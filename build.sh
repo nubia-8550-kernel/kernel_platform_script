@@ -12,28 +12,33 @@ export ANDROID_BUILD_TOP=$(pwd)
 export ANDROID_PRODUCT_OUT=${ANDROID_BUILD_TOP}/out/target/product/${TARGET_BOARD_PLATFORM}
 export OUT_DIR=${ANDROID_BUILD_TOP}/out/msm-kernel-${TARGET_BOARD_PLATFORM}
 
+# Create symbolic for external drivers
+if [ ! -d "${ANDROID_BUILD_TOP}/kernel_platform/vendor" ]; then
+  ln -s "${ANDROID_BUILD_TOP}/vendor" "${ANDROID_BUILD_TOP}/kernel_platform/vendor"
+fi
+
 export EXT_MODULES="
-  ../vendor/qcom/opensource/mmrm-driver
-  ../vendor/qcom/opensource/audio-kernel
-  ../vendor/qcom/opensource/camera-kernel
-  ../vendor/qcom/opensource/dataipa/drivers/platform/msm
-  ../vendor/qcom/opensource/datarmnet/core
-  ../vendor/qcom/opensource/datarmnet-ext/offload
-  ../vendor/qcom/opensource/datarmnet-ext/perf_tether
-  ../vendor/qcom/opensource/datarmnet-ext/shs
-  ../vendor/qcom/opensource/datarmnet-ext/wlan
-  ../vendor/qcom/opensource/mm-drivers/hw_fence
-  ../vendor/qcom/opensource/mm-drivers/msm_ext_display
-  ../vendor/qcom/opensource/mm-drivers/sync_fence
-  ../vendor/qcom/opensource/securemsm-kernel
-  ../vendor/qcom/opensource/display-drivers/msm
-  ../vendor/qcom/opensource/eva-kernel
-  ../vendor/qcom/opensource/video-driver
-  ../vendor/qcom/opensource/graphics-kernel
-  ../vendor/qcom/opensource/touch-drivers
-  ../vendor/qcom/opensource/wlan/platform
-  ../vendor/qcom/opensource/wlan/qcacld-3.0/.qca6490
-  ../vendor/qcom/opensource/bt-kernel
+  vendor/qcom/opensource/mmrm-driver
+  vendor/qcom/opensource/audio-kernel
+  vendor/qcom/opensource/camera-kernel
+  vendor/qcom/opensource/dataipa/drivers/platform/msm
+  vendor/qcom/opensource/datarmnet/core
+  vendor/qcom/opensource/datarmnet-ext/offload
+  vendor/qcom/opensource/datarmnet-ext/perf_tether
+  vendor/qcom/opensource/datarmnet-ext/shs
+  vendor/qcom/opensource/datarmnet-ext/wlan
+  vendor/qcom/opensource/mm-drivers/hw_fence
+  vendor/qcom/opensource/mm-drivers/msm_ext_display
+  vendor/qcom/opensource/mm-drivers/sync_fence
+  vendor/qcom/opensource/securemsm-kernel
+  vendor/qcom/opensource/display-drivers/msm
+  vendor/qcom/opensource/eva-kernel
+  vendor/qcom/opensource/video-driver
+  vendor/qcom/opensource/graphics-kernel
+  vendor/qcom/opensource/touch-drivers
+  vendor/qcom/opensource/wlan/platform
+  vendor/qcom/opensource/wlan/qcacld-3.0/.qca6490
+  vendor/qcom/opensource/bt-kernel
 "
 
 export LTO=thin
