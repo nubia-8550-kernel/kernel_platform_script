@@ -19,6 +19,9 @@ fi
 
 export EXT_MODULES="
   vendor/qcom/opensource/mmrm-driver
+  vendor/qcom/opensource/mm-drivers/hw_fence
+  vendor/qcom/opensource/mm-drivers/msm_ext_display
+  vendor/qcom/opensource/mm-drivers/sync_fence
   vendor/qcom/opensource/audio-kernel
   vendor/qcom/opensource/camera-kernel
   vendor/qcom/opensource/dataipa/drivers/platform/msm
@@ -27,9 +30,6 @@ export EXT_MODULES="
   vendor/qcom/opensource/datarmnet-ext/perf_tether
   vendor/qcom/opensource/datarmnet-ext/shs
   vendor/qcom/opensource/datarmnet-ext/wlan
-  vendor/qcom/opensource/mm-drivers/hw_fence
-  vendor/qcom/opensource/mm-drivers/msm_ext_display
-  vendor/qcom/opensource/mm-drivers/sync_fence
   vendor/qcom/opensource/securemsm-kernel
   vendor/qcom/opensource/display-drivers/msm
   vendor/qcom/opensource/eva-kernel
