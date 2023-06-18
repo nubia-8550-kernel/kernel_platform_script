@@ -26,8 +26,11 @@ export EXT_MODULES="
   vendor/qcom/opensource/camera-kernel
   vendor/qcom/opensource/dataipa/drivers/platform/msm
   vendor/qcom/opensource/datarmnet/core
+  vendor/qcom/opensource/datarmnet-ext/aps
   vendor/qcom/opensource/datarmnet-ext/offload
+  vendor/qcom/opensource/datarmnet-ext/perf
   vendor/qcom/opensource/datarmnet-ext/perf_tether
+  vendor/qcom/opensource/datarmnet-ext/sch
   vendor/qcom/opensource/datarmnet-ext/shs
   vendor/qcom/opensource/datarmnet-ext/wlan
   vendor/qcom/opensource/securemsm-kernel
