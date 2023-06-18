@@ -44,6 +44,7 @@ export EXT_MODULES="
   vendor/qcom/opensource/bt-kernel
   vendor/qcom/opensource/nfc-st-driver
   vendor/qcom/opensource/eSE-driver
+  vendor/nxp/opensource/driver
 "
 
 export LTO=thin
