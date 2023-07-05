@@ -40,7 +40,7 @@ export EXT_MODULES="
   vendor/qcom/opensource/graphics-kernel
   vendor/qcom/opensource/touch-drivers
   vendor/qcom/opensource/wlan/platform
-  vendor/qcom/opensource/wlan/qcacld-3.0/.qca6490
+  vendor/qcom/opensource/wlan/qcacld-3.0/.kiwi_v2
   vendor/qcom/opensource/bt-kernel
   vendor/qcom/opensource/nfc-st-driver
   vendor/qcom/opensource/eSE-driver
