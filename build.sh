@@ -1,8 +1,14 @@
 #!/bin/bash
 
 if [[ -z "${1}" ]]; then
-    echo "No device specified."
+    echo "No platform specified."
     exit
+fi
+if [[ -z "${2}" ]]; then
+    echo "No device specified, building platform only"
+    unset TARGET_PRODUCT_NAME
+else
+    export TARGET_PRODUCT_NAME="${2}"
 fi
 
 export TARGET_BOARD_PLATFORM="${1}"
