@@ -1,6 +1,7 @@
-import xml.etree.ElementTree as ET
+import lxml.etree as ET
 import subprocess
 import os
+import re
 
 # Define the list of XML files
 xml_files = ['.repo/manifests/kernel.xml', '.repo/manifests/modules.xml']
@@ -10,7 +11,8 @@ root_dir = os.path.abspath('.')
 
 for xml_file in xml_files:
     # Load the XML file
-    tree = ET.parse(xml_file)
+    parser = ET.XMLParser()
+    tree = ET.parse(xml_file, parser)
     root = tree.getroot()
 
     # Find all project elements
@@ -33,6 +35,18 @@ for xml_file in xml_files:
     # Change back to the root directory before saving the XML file
     os.chdir(root_dir)
 
+    # Convert the XML tree to a string without the XML declaration
+    xml_string = ET.tostring(root, pretty_print=True, encoding='UTF-8').decode('utf-8')
+
+    # Use regex to replace ' />' with '/>'
+    xml_string = re.sub(' />', '/>', xml_string)
+
+    # Manually create the XML declaration with double quotes
+    xml_declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
+
+    # Combine the XML declaration and the XML string
+    xml_string = xml_declaration + xml_string
+
     # Save the XML file with the same formatting
-    with open(xml_file, 'wb') as f:
-        tree.write(f, xml_declaration=True, encoding='utf-8')
+    with open(xml_file, 'w') as f:
+        f.write(xml_string)
