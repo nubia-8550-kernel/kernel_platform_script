@@ -44,13 +44,9 @@ export EXT_MODULES="
   vendor/qcom/opensource/eva-kernel
   vendor/qcom/opensource/video-driver
   vendor/qcom/opensource/graphics-kernel
-  vendor/qcom/opensource/touch-drivers
   vendor/qcom/opensource/wlan/platform
   vendor/qcom/opensource/wlan/qcacld-3.0/.kiwi_v2
   vendor/qcom/opensource/bt-kernel
-  vendor/qcom/opensource/nfc-st-driver
-  vendor/qcom/opensource/eSE-driver
-  vendor/nxp/opensource/driver
 "
 
 export LTO=thin
