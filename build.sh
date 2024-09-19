@@ -52,3 +52,41 @@ export EXT_MODULES="
 export LTO=thin
 
 RECOMPILE_KERNEL=1 ./kernel_platform/build/android/prepare_vendor.sh ${TARGET_BOARD_PLATFORM} gki
+
+KERNEL_BUILD_ROOT=`pwd`
+
+sed 's+scripts/unifdef+$LOC_UNIFDEF+g' kernel_platform/msm-kernel/scripts/headers_install.sh > out/headers_install.sh
+
+UNIFDEF=$KERNEL_BUILD_ROOT/out/msm-kernel-kalama/msm-kernel/scripts/unifdef
+HEADERS_INSTALL=$KERNEL_BUILD_ROOT/out/headers_install.sh
+KERNEL_HEADERS_GEN_DIR=$KERNEL_BUILD_ROOT/device/qcom/kalama-kernel/kernel-headers
+
+mkdir -p $KERNEL_HEADERS_GEN_DIR
+
+HEADERS_GEN_SCRIPTS=(
+  'vendor/qcom/opensource/audio-kernel audio_kernel_headers.py --audio_include_uapi include/uapi/audio/'
+  'vendor/qcom/opensource/display-drivers display_kernel_headers.py --display_include_uapi include/uapi/'
+  'vendor/qcom/opensource/graphics-kernel gfx_kernel_headers.py --gfx_include_uapi include/uapi/linux/'
+  'vendor/qcom/opensource/mm-drivers mm_drivers_kernel_headers.py --mm_drivers_include_uapi sync_fence/include/uapi/'
+  'vendor/qcom/opensource/video-driver video_kernel_headers.py --video_include_uapi include/uapi/'
+)
+
+for script in "${HEADERS_GEN_SCRIPTS[@]}"; do
+    set -- $script
+    cd $KERNEL_BUILD_ROOT/$1
+
+    headers=`find ./$4 -type f -name '*.h' | paste -sd ' '`
+
+    for hdr in $headers; do
+        mkdir -p $KERNEL_HEADERS_GEN_DIR/`dirname \`realpath --relative-to=./$4 $hdr\``
+    done
+
+    python3 $2 \
+            --verbose \
+            --header_arch arm64 \
+            --gen_dir $KERNEL_HEADERS_GEN_DIR \
+            --unifdef $UNIFDEF \
+            --headers_install $HEADERS_INSTALL \
+            $3 $headers
+    cd $KERNEL_BUILD_ROOT
+done
