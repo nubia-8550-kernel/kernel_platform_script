@@ -90,3 +90,11 @@ for script in "${HEADERS_GEN_SCRIPTS[@]}"; do
             $3 $headers
     cd $KERNEL_BUILD_ROOT
 done
+
+REMOVE_HEADERS="
+  linux/udp.h
+"
+
+for header in $REMOVE_HEADERS; do
+    rm $KERNEL_HEADERS_GEN_DIR/$header
+done
